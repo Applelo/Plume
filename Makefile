@@ -1,38 +1,42 @@
-# Plume MAKEFILE
+##
+##
+##	Author: Applelo
+##		  Samir88Nasri
+##
+##
+TARGET = Plume
+OBJS   = src/Buttons.o src/Engine.o src/Font.o src/main.o src/Menu.o src/Timer.o \
+img/plume.o img/grid.o img/cloud.o img/block.o img/grass.o
 
-TARGET = plume
-OBJS   = main.o font.o img/plume.o img/grid.o img/cloud.o img/block.o img/grass.o
 
 LIBS = -lvita2d -lSceKernel_stub -lSceDisplay_stub -lSceGxm_stub \
-	-lSceSysmodule_stub -lSceCtrl_stub -lScePgf_stub -lSceTouch_stub \
-	-lSceCommonDialog_stub -lfreetype -lpng -ljpeg -lz -lm -lc
+	-lSceSysmodule_stub -lSceCtrl_stub -lScePgf_stub \
+	-lSceCommonDialog_stub -lUVLoader_stub -lSceHttp_stub -lSceNetCtl_stub -lSceNet_stub \
+	-lfreetype -lpng -lz -lm -lSceTouch_stub -lc -lstdc++ -lgcc
 
+VITASDK = ~/gcc-arm-vita-eabi-4_9-2015q3/arm-vita-eabi/
 PREFIX  = arm-vita-eabi
-CC      = $(PREFIX)-gcc
-CFLAGS  = -Wl,-q -Wall -O3
+CC := arm-vita-eabi-gcc
+CXX := arm-vita-eabi-g++
+STRIP := arm-vita-eabi-strip
+READELF = $(PREFIX)-readelf
+OBJDUMP = $(PREFIX)-objdump
+CFLAGS  = -Wl,-q -Wall -O3 -I$(VITASDK)/include -L$(VITASDK)/lib
+CXXFLAGS= $(CFLAGS) -std=c++11
 ASFLAGS = $(CFLAGS)
+
 
 all: $(TARGET).velf
 
-%.velf: %.elf
-	$(PREFIX)-strip -g $<
-	vita-elf-create $< $@ > /dev/null
-
 $(TARGET).elf: $(OBJS)
-	$(CC) $(CFLAGS) $^ $(LIBS) -o $@
+	$(CXX) $(CXXFLAGS) $(CFLAGS) $^ $(LIBS) -o $@
 
 %.o: %.png
-	$(PREFIX)-ld -r -b binary -o $@ $^
+		$(PREFIX)-ld -r -b binary -o $@ $^
+
+$(TARGET).velf: $(TARGET).elf
+	$(STRIP) -g $<
+	vita-elf-create $< $@
 
 clean:
-	@rm -rf $(TARGET).velf $(TARGET).elf $(OBJS)
-
-copy: $(TARGET).velf
-	@cp $(TARGET).velf ~/shared/vitasample.elf
-	@echo "Copied!"
-
-send: $(TARGET).velf
-	curl -T $(TARGET).velf ftp://$(PSVITAIP):1337/cache0:/
-
-run: $(TARGET).velf
-	@sh run_homebrew_unity.sh $(TARGET).velf
+	-rm -f $(TARGET).velf $(TARGET).elf $(OBJS)

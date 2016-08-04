@@ -141,7 +141,7 @@ void Buttons::displayButton() {
 
 			if (!_locked) {
 				vita2d_draw_rectangle( _x-4, _y-4, _width+8, _height+8, RGBA8( 255, 238, 127, 150));
-				vita2d_draw_rectangle( _x, _y, _width, _height, RGBA8( 215, 120, 17, 175));
+				vita2d_draw_rectangle( _x, _y, _width, _height, RGBA8( 215, 170, 17, 175));
 			}
 			else {
 				vita2d_draw_rectangle( _x-4, _y-4, _width+8, _height+8, RGBA8( 130, 130, 130, 150));

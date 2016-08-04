@@ -88,12 +88,12 @@ Menu::~Menu() {
 
 
 void Menu::game() {
-//jeu
+	_engine->control();
+	_engine->displayWorld();
 }
 
 void Menu::main() {
 
-	memset(&_touch, 0, sizeof(SceTouchData));
 	sceTouchPeek(SCE_TOUCH_PORT_FRONT, &_touch, 1);
 	_buttonPlay->displayButton();
 	_buttonOption->displayButton();
@@ -122,7 +122,6 @@ void Menu::main() {
 
 void Menu::option() {
 
-	memset(&_touch, 0, sizeof(SceTouchData));
 	sceTouchPeek(SCE_TOUCH_PORT_FRONT, &_touch, 1);
 
 	_buttonScore->displayButton();
@@ -144,7 +143,6 @@ void Menu::option() {
 
 void Menu::credits() {
 
-	memset(&_touch, 0, sizeof(SceTouchData));
 	sceTouchPeek(SCE_TOUCH_PORT_FRONT, &_touch, 1);
 	_buttonBack->displayButton();
 

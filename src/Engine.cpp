@@ -27,7 +27,9 @@ Engine::Engine() {
 	_textures["grid"] = vita2d_load_PNG_buffer(&_binary_img_grid_png_start);
 	_textures["block"] = vita2d_load_PNG_buffer(&_binary_img_block_png_start);
 	_textures["grass"] = vita2d_load_PNG_buffer(&_binary_img_grass_png_start);
-
+	_xTouch = 0;
+	_plume = new Plume();
+	_plume->setTexture(_textures["plume"]);
 	_tfont = vita2d_load_font_mem(font, font_size);
 	srand(time(NULL));
 
@@ -46,4 +48,23 @@ Engine::~Engine() {
 		vita2d_free_texture(_textures["block"]);
 	if (_textures["grass"])
 		vita2d_free_texture(_textures["grass"]);
+}
+
+void Engine::displayWorld() {
+	_plume->displayPlume();
+}
+
+void Engine::control() {
+	sceTouchPeek(SCE_TOUCH_PORT_FRONT, &_touch, 1);
+	_xTouch = lerp(_touch.report[0].x, 1919, 960);
+	if (_plume->getStatut()!=Statut::END) {
+		if (_xTouch<480) {
+			_plume->setStatut(Statut::LEFT);
+			_plume->setX(_plume->getX()-4);
+			}
+		else {
+			_plume->setStatut(Statut::RIGHT);
+			_plume->setX(_plume->getX()+4);
+		}
+	}
 }

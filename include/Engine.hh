@@ -15,6 +15,8 @@
 
 # include "Buttons.hh"
 # include "Plume.hh"
+# include "Grid.hh"
+# include "Grass.hh"
 # include "Timer.hh"
 # include "Utils.h"
 
@@ -25,10 +27,13 @@ private:
 
 	Timer* _timer;
 	Plume* _plume;
+	Grid* _grid;
+	Grass* _grass;
 	vita2d_font* _tfont;
 	std::map<std::string, vita2d_texture*> _textures;
 	std::string _error;
 	SceTouchData _touch;
+	SceCtrlData _pad;
 	int _xTouch;
 
 public:

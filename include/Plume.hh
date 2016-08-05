@@ -10,7 +10,7 @@
 # include "Utils.h"
 
 typedef enum Statut {
-	END = 0,
+	START = 0,
 	LEFT,
 	RIGHT
 } Statut;
@@ -19,6 +19,7 @@ class Plume {
 private:
 	int _x;
 	int _y;
+	int _speed;
 	int _animation;
 	Statut _statut;
 	vita2d_texture* _texture;
@@ -33,12 +34,14 @@ public:
 	void setAnimation(const int animation);
 	void setTexture(vita2d_texture* texture);
 	void setStatut(const Statut statut);
+	void setSpeed(const int speed);
 
 	//Getter
 	const int getX() const;
 	const int getY() const;
 	const int getAnimation() const;
 	const Statut getStatut() const;
+	const int getSpeed() const;
 
 	// Display
 	void displayPlume();

@@ -14,7 +14,6 @@ Menu::Menu() {
 
 	_engine = new Engine();
 	_buttonPlay = new Buttons();
-	_buttonOption = new Buttons();
 	_buttonCredits = new Buttons();
 	_buttonExit = new Buttons();
 	_buttonScore = new Buttons();
@@ -27,8 +26,6 @@ Menu::Menu() {
 	_oldXTouch = 0;
 	_oldYTouch = 0;
 
-//Main Menu
-
 	//buttonPlay
 	_buttonPlay->setX((SCREEN_L-(SCREEN_L/4))/2);
 	_buttonPlay->setY(SCREEN_H/9);
@@ -38,17 +35,9 @@ Menu::Menu() {
 	_buttonPlay->setText("Play");
 	_buttonPlay->setSelected(true);
 
-	//buttonOption
-	_buttonOption->setX((SCREEN_L-(SCREEN_L/4))/2);
-	_buttonOption->setY(SCREEN_H/9*3);
-	_buttonOption->setWidth(SCREEN_L/4);
-	_buttonOption->setHeight(SCREEN_H/9);
-	_buttonOption->setFont(_tfont);
-	_buttonOption->setText("Option");
-
 	//buttonCredits
 	_buttonCredits->setX((SCREEN_L-(SCREEN_L/4))/2);
-	_buttonCredits->setY(SCREEN_H/9*5);
+	_buttonCredits->setY(SCREEN_H/9*3);
 	_buttonCredits->setWidth(SCREEN_L/4);
 	_buttonCredits->setHeight(SCREEN_H/9);
 	_buttonCredits->setFont(_tfont);
@@ -56,27 +45,16 @@ Menu::Menu() {
 
 	//buttonExit
 	_buttonExit->setX((SCREEN_L-(SCREEN_L/4))/2);
-	_buttonExit->setY(SCREEN_H/9*7);
+	_buttonExit->setY(SCREEN_H/9*5);
 	_buttonExit->setWidth(SCREEN_L/4);
 	_buttonExit->setHeight(SCREEN_H/9);
 	_buttonExit->setFont(_tfont);
 	_buttonExit->setText("Exit");
 
-//Option menu
-
-	//buttonScore
-	_buttonScore->setX((SCREEN_L-(SCREEN_L/4))/2);
-	_buttonScore->setY(SCREEN_H/9);
-	_buttonScore->setWidth(SCREEN_L/4);
-	_buttonScore->setHeight(SCREEN_H/9);
-	_buttonScore->setFont(_tfont);
-	_buttonScore->setText("Score");
-	_buttonScore->setLocked(true);
-
 
 //buttonBack
 	_buttonBack->setX((SCREEN_L-(SCREEN_L/4))/2);
-	_buttonBack->setY(SCREEN_H/9*7);
+	_buttonBack->setY(SCREEN_H/9*5);
 	_buttonBack->setWidth(SCREEN_L/4);
 	_buttonBack->setHeight(SCREEN_H/9);
 	_buttonBack->setFont(_tfont);
@@ -95,8 +73,8 @@ void Menu::game() {
 void Menu::main() {
 
 	sceTouchPeek(SCE_TOUCH_PORT_FRONT, &_touch, 1);
+	_engine->displayWorld();
 	_buttonPlay->displayButton();
-	_buttonOption->displayButton();
 	_buttonCredits->displayButton();
 	_buttonExit->displayButton();
 
@@ -106,35 +84,11 @@ void Menu::main() {
 	if (_buttonPlay->touchButton(_xTouch, _yTouch) && _touch.reportNum > 0 && _oldXTouch != _xTouch) {
 		_step = GAME;
 	}
-	if (_buttonOption->touchButton(_xTouch, _yTouch) && _touch.reportNum > 0 && _oldXTouch != _xTouch) {
-		_step = OPTION;
-	}
 	if (_buttonCredits->touchButton(_xTouch, _yTouch) && _touch.reportNum > 0 && _oldXTouch != _xTouch) {
 		_step = CREDITS;
 	}
 	if (_buttonExit->touchButton(_xTouch, _yTouch) && _touch.reportNum > 0 && _oldXTouch != _xTouch) {
 		_step = EXIT;
-	}
-
-	_oldXTouch = _xTouch;
-	_oldYTouch = _yTouch;
-}
-
-void Menu::option() {
-
-	sceTouchPeek(SCE_TOUCH_PORT_FRONT, &_touch, 1);
-
-	_buttonScore->displayButton();
-	_buttonBack->displayButton();
-
-	_xTouch = lerp(_touch.report[0].x, 1919, 960);
-	_yTouch = lerp(_touch.report[0].y, 1087, 544);
-
-	if (_buttonScore->touchButton(_xTouch, _yTouch) && _touch.reportNum > 0 && _oldXTouch != _xTouch) {
-		_step = SCORE;
-	}
-	if (_buttonBack->touchButton(_xTouch, _yTouch) && _touch.reportNum > 0 && _oldXTouch != _xTouch) {
-		_step = MAIN;
 	}
 
 	_oldXTouch = _xTouch;

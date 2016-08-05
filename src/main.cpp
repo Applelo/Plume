@@ -13,7 +13,7 @@ int main() {
 
 	vita2d_init();
 	vita2d_set_clear_color(RGBA8(0x00, 0x00, 0x00, 0xFF));
-	
+
 	Menu* menu = new Menu();
 
 	while (run) {
@@ -25,8 +25,6 @@ int main() {
 			menu->main();
 		if (menu->getMenu() == Step::GAME)
 			menu->game();
-		if (menu->getMenu() == Step::OPTION)
-			menu->option();
 		if (menu->getMenu() == Step::CREDITS)
 			menu->credits();
 		if (menu->getMenu() == Step::EXIT)

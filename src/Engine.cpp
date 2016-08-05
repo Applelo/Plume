@@ -30,6 +30,10 @@ Engine::Engine() {
 	_xTouch = 0;
 	_plume = new Plume();
 	_plume->setTexture(_textures["plume"]);
+	_grid = new Grid();
+	_grid->setTexture(_textures["grid"]);
+	_grass = new Grass();
+	_grass->setTexture(_textures["grass"]);
 	_tfont = vita2d_load_font_mem(font, font_size);
 	srand(time(NULL));
 
@@ -51,20 +55,46 @@ Engine::~Engine() {
 }
 
 void Engine::displayWorld() {
+	_grid->displayGrid();
 	_plume->displayPlume();
+	_grass->displayGrass();
 }
 
 void Engine::control() {
 	sceTouchPeek(SCE_TOUCH_PORT_FRONT, &_touch, 1);
-	_xTouch = lerp(_touch.report[0].x, 1919, 960);
-	if (_plume->getStatut()!=Statut::END) {
-		if (_xTouch<480) {
-			_plume->setStatut(Statut::LEFT);
-			_plume->setX(_plume->getX()-4);
-			}
-		else {
-			_plume->setStatut(Statut::RIGHT);
-			_plume->setX(_plume->getX()+4);
-		}
+	sceCtrlPeekBufferPositive( 0, &_pad, 1);
+	if (_grid->getStatut()==false) {
+		_grid->setStatut(true);
+		_grass->setStatut(false);
 	}
+
+//Right or left
+	_xTouch = lerp(_touch.report[0].x, 1919, 960);
+	if (_xTouch<480)
+		_plume->setX(_plume->getX()-4);
+	else
+		_plume->setX(_plume->getX()+4);
+
+//Statut
+	if (_plume->getY()>=420) {
+		_plume->setStatut(Statut::START);
+	}
+	else {
+		if (_xTouch<480)
+			_plume->setStatut(Statut::LEFT);
+		else
+			_plume->setStatut(Statut::RIGHT);
+	}
+
+	if (_plume->getY()>=200)
+		_plume->setY(_plume->getY()-1);
+
+	//Limite personnage
+	if (_plume->getX()<150)
+		_plume->setX(150);
+
+	if (_plume->getX()>770)
+		_plume->setX(770);
+
+
 }

@@ -8,7 +8,8 @@
 TITLE_ID = PLUM00001
 TARGET = Plume
 OBJS   = src/Buttons.o src/Engine.o src/Font.o src/main.o src/Menu.o src/Timer.o \
-src/Plume.o img/plume.o img/grid.o img/cloud.o img/block.o img/grass.o
+src/Plume.o src/Grid.o src/Grass.o img/plume.o img/grid.o img/cloud.o img/block.o \
+img/grass.o
 
 
 LIBS = -lvita2d -lSceKernel_stub -lSceDisplay_stub -lSceGxm_stub \
@@ -26,8 +27,6 @@ OBJDUMP = $(PREFIX)-objdump
 CFLAGS  = -Wl,-q -Wall -O3 -I$(VITASDK)/include -L$(VITASDK)/lib
 CXXFLAGS= $(CFLAGS) -std=c++11
 ASFLAGS = $(CFLAGS)
-
-PSVITAIP = 192.168.1.100
 
 all: $(TARGET).vpk
 
@@ -50,11 +49,3 @@ $(TARGET).elf: $(OBJS)
 clean:
 	-rm -f $(TARGET).velf $(TARGET).elf $(OBJS) \
 	eboot.bin param.sfo $(TARGET).vpk
-
-vpksend: $(TARGET).vpk
-		curl -T $(TARGET).vpk ftp://$(PSVITAIP):1337/ux0:/
-		@echo "Sent."
-
-send: eboot.bin
-		curl -T eboot.bin ftp://$(PSVITAIP):1337/ux0:/app/$(TITLE_ID)/
-		@echo "Sent."

@@ -25,5 +25,6 @@
 # define SCREEN_H	544
 # define SCREEN_L	960
 # define COLOR_SKY RGBA8(0,175,227,255)
+# define WHITE RGBA8(255,255,255,255)
 
 #endif /* !UTILS_H_ */

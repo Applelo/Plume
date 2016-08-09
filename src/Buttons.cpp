@@ -148,7 +148,7 @@ void Buttons::displayButton() {
 				vita2d_draw_rectangle( _x, _y, _width, _height, RGBA8( 100, 100, 100, 175));
 			}
 
-			vita2d_font_draw_textf(_tfont, _txtCenterW, _txtCenterH, RGBA8(255, 255, 255, 255), 20, _text.c_str());
+			vita2d_font_draw_textf(_tfont, _txtCenterW, _txtCenterH, WHITE, 20, _text.c_str());
 		}
 		else if (_texture)
 			vita2d_draw_texture(_texture, _x, _y);

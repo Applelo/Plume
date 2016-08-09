@@ -8,8 +8,8 @@
 TITLE_ID = PLUM00001
 TARGET = Plume
 OBJS   = src/Buttons.o src/Engine.o src/Font.o src/main.o src/Menu.o src/Timer.o \
-src/Plume.o src/Grid.o src/Grass.o img/plume.o img/grid.o img/cloud.o img/block.o \
-img/grass.o
+src/Plume.o src/Grid.o src/Grass.o src/Cloud.o \
+img/plume.o img/grid.o img/cloud.o img/block.o img/grass.o
 
 
 LIBS = -lvita2d -lSceKernel_stub -lSceDisplay_stub -lSceGxm_stub \

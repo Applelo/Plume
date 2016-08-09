@@ -24,6 +24,7 @@ const bool Timer::isPlaying() const {
 	return _playing;
 }
 
+
 // Setter
 int Timer::resumeTimer() {
 	if (!_playing) {

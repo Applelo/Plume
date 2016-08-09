@@ -17,6 +17,7 @@
 # include "Plume.hh"
 # include "Grid.hh"
 # include "Grass.hh"
+# include "Cloud.hh"
 # include "Timer.hh"
 # include "Utils.h"
 
@@ -29,6 +30,7 @@ private:
 	Plume* _plume;
 	Grid* _grid;
 	Grass* _grass;
+	Cloud* _cloud;
 	vita2d_font* _tfont;
 	std::map<std::string, vita2d_texture*> _textures;
 	std::string _error;

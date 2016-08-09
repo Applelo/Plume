@@ -8,7 +8,7 @@
 
 Grass::Grass() {
 	_y = 528;
-	_statut = false;
+	_statut = true;
 	_texture = nullptr;
 }
 
@@ -32,10 +32,8 @@ void Grass::displayGrass() {
 
 	if (_statut==false && _y<560)
   	_y=_y+2;
-	else
-		_y = 528;
 
-  for (int i=0; i<=30;i++)
-		vita2d_draw_texture(_texture,0+(i*32),_y);
+  for (int _i=0; _i<=30; _i++)
+		vita2d_draw_texture(_texture,0+(_i*32),_y);
 
 }

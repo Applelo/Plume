@@ -34,6 +34,8 @@ Engine::Engine() {
 	_grid->setTexture(_textures["grid"]);
 	_grass = new Grass();
 	_grass->setTexture(_textures["grass"]);
+	_cloud = new Cloud();
+	_cloud->setTexture(_textures["cloud"]);
 	_tfont = vita2d_load_font_mem(font, font_size);
 	srand(time(NULL));
 
@@ -55,9 +57,11 @@ Engine::~Engine() {
 }
 
 void Engine::displayWorld() {
+	_cloud->displayCloud();
 	_grid->displayGrid();
 	_plume->displayPlume();
 	_grass->displayGrass();
+	vita2d_font_draw_textf(_tfont, 10, 10,WHITE, 20,"Time : %4.2f",_timer->getTime()*0.001);
 }
 
 void Engine::control() {
@@ -66,6 +70,7 @@ void Engine::control() {
 	if (_grid->getStatut()==false) {
 		_grid->setStatut(true);
 		_grass->setStatut(false);
+		_cloud->setStatut(true);
 	}
 
 //Right or left

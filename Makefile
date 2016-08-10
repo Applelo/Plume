@@ -14,7 +14,7 @@ img/plume.o img/grid.o img/cloud.o img/block.o img/grass.o
 
 LIBS = -lvita2d -lSceKernel_stub -lSceDisplay_stub -lSceGxm_stub \
 	-lSceSysmodule_stub -lSceCtrl_stub -lScePgf_stub \
-	-lSceCommonDialog_stub -lUVLoader_stub -lSceHttp_stub -lSceNetCtl_stub \
+	-lSceCommonDialog_stub -lSceHttp_stub -lSceNetCtl_stub \
 	-lfreetype -lpng -lz -lm -lSceTouch_stub -lc -lstdc++ -lgcc
 
 VITASDK = ~/gcc-arm-vita-eabi-4_9-2015q3/arm-vita-eabi/

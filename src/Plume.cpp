@@ -61,14 +61,13 @@ const int Plume::getSpeed() const{
 // Display
 void Plume::displayPlume() {
 
-  if (floor(_timer->getTime()/100) >= 3)
+  if (floor(_timer->getTime() / 100) >= 3)
 		_timer->resetTimer();
 
-  if (_statut==LEFT)
-		vita2d_draw_texture_part(_texture,_x,_y,0+floor(_timer->getTime()/100)*38,0,38,60); //left
-  else if (_statut==RIGHT)
-		vita2d_draw_texture_part(_texture,_x,_y,152+floor(_timer->getTime()/100)*38,0,38,60);//right
+  if (_statut == LEFT)
+		vita2d_draw_texture_part(_texture, _x, _y, 0 + floor(_timer->getTime() / 100) * 38, 0, 38, 60); //left
+  else if (_statut == RIGHT)
+		vita2d_draw_texture_part(_texture, _x, _y, 152 + floor(_timer->getTime() / 100) * 38, 0, 38, 60);//right
   else
-		vita2d_draw_texture_part(_texture,_x,_y,304+floor(_timer->getTime()/100)*38,0,38,60);//start
-
+		vita2d_draw_texture_part(_texture, _x, _y, 304 + floor(_timer->getTime() / 100) * 38, 0, 38, 60);//start
 }

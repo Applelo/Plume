@@ -10,7 +10,7 @@ Grid::Grid() {
 	_y = 0;
 	_statut = false;
 	_texture = nullptr;
-	_speed =1;
+	_speed = 1;
 }
 
 Grid::~Grid() {
@@ -48,13 +48,12 @@ const int Grid::getSpeed() const{
 
 // Display
 void Grid::displayGrid() {
-
 	if (_statut)
-  	_y=_y+_speed;
+  	_y += _speed;
 
-	if (_y > 543) _y=0;
+	if (_y > 543)
+		_y = 0;
 
-  for (int i=0; i<=1;i++)
-		vita2d_draw_texture(_texture,0,_y+(-544*i));
-
+  for (unsigned int i = 0; i <= 1; i++)
+		vita2d_draw_texture(_texture, 0, _y + ( -544 * i));
 }

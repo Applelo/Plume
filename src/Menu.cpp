@@ -68,6 +68,7 @@ Menu::~Menu() {
 void Menu::game() {
 	_engine->control();
 	_engine->displayWorld();
+	_engine->check();
 }
 
 void Menu::main() {

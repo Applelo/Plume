@@ -36,6 +36,9 @@ Engine::Engine() {
 	_grass->setTexture(_textures["grass"]);
 	_cloud = new Cloud();
 	_cloud->setTexture(_textures["cloud"]);
+	_block = new Block();
+	_block->setTexture(_textures["block"]);
+	
 	_tfont = vita2d_load_font_mem(font, font_size);
 	srand(time(NULL));
 
@@ -61,17 +64,20 @@ void Engine::displayWorld() {
 	_grid->displayGrid();
 	_plume->displayPlume();
 	_grass->displayGrass();
-	vita2d_font_draw_textf(_tfont, 10, 10,WHITE, 20,"Time : %4.2f",_timer->getTime()*0.001);
+	_block->displayBlock();
+	vita2d_font_draw_textf(_tfont, 10, 10,WHITE, 20,"Time : %4f",_timer->getTime()*0.001);
+	
+	if (_block->getStatut())
+		vita2d_font_draw_text(_tfont, 10, 25,WHITE, 20,"true");
+	else
+		vita2d_font_draw_text(_tfont, 10, 25,WHITE, 20,"false");
+			
+
 }
 
 void Engine::control() {
 	sceTouchPeek(SCE_TOUCH_PORT_FRONT, &_touch, 1);
 	sceCtrlPeekBufferPositive( 0, &_pad, 1);
-	if (_grid->getStatut()==false) {
-		_grid->setStatut(true);
-		_grass->setStatut(false);
-		_cloud->setStatut(true);
-	}
 
 //Right or left
 	_xTouch = lerp(_touch.report[0].x, 1919, 960);
@@ -101,5 +107,15 @@ void Engine::control() {
 	if (_plume->getX()>770)
 		_plume->setX(770);
 
+}
 
+void Engine::check() {
+	if (_grid->getStatut() == false) {
+		_grass->setStatut(false);
+		_cloud->setStatut(true);
+		_grid->setStatut(true);
+	}
+	if (_block->getStatut() == false)
+		_block->setStatut(true);
+	
 }

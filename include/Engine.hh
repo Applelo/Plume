@@ -18,6 +18,7 @@
 # include "Grid.hh"
 # include "Grass.hh"
 # include "Cloud.hh"
+# include "Block.hh"
 # include "Timer.hh"
 # include "Utils.h"
 
@@ -31,6 +32,7 @@ private:
 	Grid* _grid;
 	Grass* _grass;
 	Cloud* _cloud;
+	Block* _block;
 	vita2d_font* _tfont;
 	std::map<std::string, vita2d_texture*> _textures;
 	std::string _error;
@@ -44,6 +46,7 @@ public:
 
 	void displayWorld();
 	void control();
+	void check();
 
 };
 #endif /* !ENGINE_HH_ */

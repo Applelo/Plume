@@ -49,11 +49,11 @@ const int Grid::getSpeed() const{
 // Display
 void Grid::displayGrid() {
 	if (_statut)
-  	_y += _speed;
+  		_y += _speed;
 
 	if (_y > 543)
 		_y = 0;
 
-  for (unsigned int i = 0; i <= 1; i++)
-		vita2d_draw_texture(_texture, 0, _y + ( -544 * i));
+  for (int _i = 0; _i <= 1; _i++)
+		vita2d_draw_texture(_texture, 0, _y + ( -544 * _i));
 }

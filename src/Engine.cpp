@@ -17,6 +17,7 @@ extern unsigned char _binary_img_grid_png_start;
 extern unsigned char _binary_img_cloud_png_start;
 extern unsigned char _binary_img_grass_png_start;
 extern unsigned char _binary_img_block_png_start;
+extern unsigned char _binary_img_pause_png_start;
 
 Engine::Engine() {
 	_timer = new Timer();
@@ -27,6 +28,7 @@ Engine::Engine() {
 	_textures["grid"] = vita2d_load_PNG_buffer(&_binary_img_grid_png_start);
 	_textures["block"] = vita2d_load_PNG_buffer(&_binary_img_block_png_start);
 	_textures["grass"] = vita2d_load_PNG_buffer(&_binary_img_grass_png_start);
+	_textures["pause"] = vita2d_load_PNG_buffer(&_binary_img_pause_png_start);
 	_xTouch = 0;
 	_plume = new Plume();
 	_plume->setTexture(_textures["plume"]);
@@ -40,8 +42,12 @@ Engine::Engine() {
 	_block->setTexture(_textures["block"]);
 	
 	_tfont = vita2d_load_font_mem(font, font_size);
-	srand(time(NULL));
+	
+	//button
+	_buttonPause = new Buttons(_textures["pause"], 890, 10, 60, 60);
+	
 
+	srand(time(NULL));
 }
 
 Engine::~Engine() {
@@ -57,6 +63,8 @@ Engine::~Engine() {
 		vita2d_free_texture(_textures["block"]);
 	if (_textures["grass"])
 		vita2d_free_texture(_textures["grass"]);
+	if (_textures["pause"])
+		vita2d_free_texture(_textures["pause"]);
 }
 
 void Engine::displayWorld() {
@@ -66,13 +74,7 @@ void Engine::displayWorld() {
 	_grass->displayGrass();
 	_block->displayBlock();
 	vita2d_font_draw_textf(_tfont, 10, 10,WHITE, 20,"Time : %4f",_timer->getTime()*0.001);
-	
-	if (_block->getStatut())
-		vita2d_font_draw_text(_tfont, 10, 25,WHITE, 20,"true");
-	else
-		vita2d_font_draw_text(_tfont, 10, 25,WHITE, 20,"false");
 			
-
 }
 
 void Engine::control() {
@@ -106,6 +108,7 @@ void Engine::control() {
 
 	if (_plume->getX()>770)
 		_plume->setX(770);
+	_buttonPause->displayButton();
 
 }
 

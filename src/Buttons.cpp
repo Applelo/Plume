@@ -14,8 +14,8 @@ Buttons::Buttons() {
 	_text = "";
 	_width = 0;
 	_height = 0;
-	_txtCenterW = 0;
-	_txtCenterH = 0;
+	_centerW = 0;
+	_centerH = 0;
 	_locked = false;
 	_isVisible = true;
 	_selected = false;
@@ -25,15 +25,15 @@ Buttons::Buttons() {
 	_tfont = nullptr;
 }
 
-Buttons::Buttons(vita2d_font* font, std::string name, int x, int y, int width, int height) {
+Buttons::Buttons(vita2d_font* font, const std::string& name, int x, int y, int width, int height) {
 	 _tfont = font;
 	 _text = name;
 	 _x = x;
 	 _y = y;
 	 _width = width;
 	 _height = height;
-	_txtCenterW = 0;
-	_txtCenterH = 0;
+	_centerW = 0;
+	_centerH = 0;
 	_locked = false;
 	_isVisible = true;
 	_selected = false;
@@ -42,7 +42,22 @@ Buttons::Buttons(vita2d_font* font, std::string name, int x, int y, int width, i
 	_texture = nullptr;
 }
 
-
+Buttons::Buttons(vita2d_texture* texture, int x, int y, int width, int height) {
+	 _texture = texture;
+	 _text = "";
+	 _x = x;
+	 _y = y;
+	 _width = width;
+	 _height = height;
+	_centerW = 0;
+	_centerH = 0;
+	_locked = false;
+	_isVisible = true;
+	_selected = false;
+	_alphaSelect = 255;
+	_compteurSelect = 0;
+	_tfont = nullptr;
+}
 
 Buttons::~Buttons() {
 }
@@ -56,7 +71,7 @@ void Buttons::setY(const int y) {
 	_y = y;
 }
 
-void Buttons::setText(const std::string text){
+void Buttons::setText(const std::string& text){
 	_text = text;
 }
 
@@ -95,7 +110,7 @@ const int Buttons::getY() const{
 	return _y;
 }
 
-const std::string Buttons::getText() const {
+const std::string& Buttons::getText() const {
 	return _text;
 }
 
@@ -124,45 +139,53 @@ const bool Buttons::getSelected() const {
 // Display
 void Buttons::displayButton() {
 	if (_isVisible) {
-		if (_tfont) {
-			_txtCenterW = _x + (_width/2) - (vita2d_font_text_width(_tfont, 20, _text.c_str())/2);
-			_txtCenterH = _y + (_height/2) - (vita2d_font_text_height(_tfont, 20, _text.c_str())/2);
 
-			if (_selected) {
-				vita2d_draw_rectangle( _x-8, _y-8, _width+16, _height+16, RGBA8( 0, 255, 255, _alphaSelect));
-				if (_compteurSelect<=100)
-					_alphaSelect -= 2;
-				else
-					_alphaSelect += 2;
-				if (_compteurSelect>=200)
-					_compteurSelect=0;
-				_compteurSelect++;
-			}
-
-			if (!_locked) {
-				vita2d_draw_rectangle( _x-4, _y-4, _width+8, _height+8, RGBA8( 255, 238, 127, 150));
-				vita2d_draw_rectangle( _x, _y, _width, _height, RGBA8( 215, 170, 17, 175));
-			}
-			else {
-				vita2d_draw_rectangle( _x-4, _y-4, _width+8, _height+8, RGBA8( 130, 130, 130, 150));
-				vita2d_draw_rectangle( _x, _y, _width, _height, RGBA8( 100, 100, 100, 175));
-			}
-
-			vita2d_font_draw_textf(_tfont, _txtCenterW, _txtCenterH, WHITE, 20, _text.c_str());
+		if (_selected) {
+			vita2d_draw_rectangle( _x-8, _y-8, _width+16, _height+16, RGBA8( 102, 186, 255, _alphaSelect));
+			if (_compteurSelect<=100)
+				_alphaSelect -= 2;
+			else
+				_alphaSelect += 2;
+			if (_compteurSelect>=200)
+				_compteurSelect=0;
+			_compteurSelect++;
 		}
-		else if (_texture)
-			vita2d_draw_texture(_texture, _x, _y);
-	}
+
+		if (!_locked) {
+			vita2d_draw_rectangle( _x-4, _y-4, _width+8, _height+8, RGBA8( 217, 174, 28, 100));
+			vita2d_draw_rectangle( _x-2, _y-2, _width+4, _height+4, RGBA8( 255, 238, 127, 150));
+			vita2d_draw_rectangle( _x, _y, _width, _height, RGBA8( 255, 214, 76, 175));
+		}
+		else {
+			vita2d_draw_rectangle( _x-4, _y-4, _width+8, _height+8, RGBA8( 150, 150, 150, 100));
+			vita2d_draw_rectangle( _x-2, _y-2, _width+4, _height+4, RGBA8( 130, 130, 130, 150));
+			vita2d_draw_rectangle( _x, _y, _width, _height, RGBA8( 100, 100, 100, 175));
+		}
+
+		if (_tfont) {
+			_centerW = _x + (_width/2) - (vita2d_font_text_width(_tfont, 20, _text.c_str())/2);
+			_centerH = _y + (_height/2) - (vita2d_font_text_height(_tfont, 20, _text.c_str())/2);
+
+			vita2d_font_draw_textf(_tfont, _centerW, _centerH, RGBA8(255, 255, 255, 255), 20, _text.c_str());
+		}
+		else if (_texture) {
+			_centerW = _x + (_width/2) - (vita2d_texture_get_width(_texture)/2);
+			_centerH = _y + (_height/2) - (vita2d_texture_get_height(_texture)/2);
+
+			vita2d_draw_texture(_texture, _centerW, _centerH);
+		}
+
+		}
 }
 
 //Touch
 const bool Buttons::touchButton(const int x, const int y) const {
-	if (_tfont && _texture == nullptr) {
-		if (x > _x && x < (_x + _width) && y > _y && y < (_y + _height) && !_locked)
-			return true;
-	}
-	else
-		if (x > _x && x < (_x + vita2d_texture_get_width(_texture)) && y > _y && y < (_y + vita2d_texture_get_height(_texture)) )
-			return true;
+	//if (_tfont && _texture == nullptr) {
+	if (x > _x && x < (_x + _width) && y > _y && y < (_y + _height) && !_locked)
+		return true;
+	//}
+	//else
+		//if (x > _x && x < (_x + vita2d_texture_get_width(_texture)) && y > _y && y < (_y + vita2d_texture_get_height(_texture)) )
+			//return true;
 	return false;
 }

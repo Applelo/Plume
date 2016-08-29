@@ -21,21 +21,22 @@ private:
 	bool _locked;
 	bool _isVisible;
 	bool _selected;
-	int _txtCenterW;
-	int _txtCenterH;
+	int _centerW;
+	int _centerH;
 	int _alphaSelect;
 	int _compteurSelect;
 	vita2d_texture* _texture;
 
 public:
 	Buttons();
-	Buttons(vita2d_font* font, std::string name, int x, int y, int width, int height);
+	Buttons(vita2d_font* font, const std::string& name, int x, int y, int width, int height);
+	Buttons(vita2d_texture* texture, int x, int y, int width, int height);
 	virtual ~Buttons();
 
 	//Setter
 	void setX(const int x);
 	void setY(const int y);
-	void setText(const std::string text);
+	void setText(const std::string& text);
 	void setWidth(const int width);
 	void setHeight(const int height);
 	void setFont(vita2d_font* tfont);
@@ -48,7 +49,7 @@ public:
 	//Getter
 	const int getX() const;
 	const int getY() const;
-	const std::string getText() const;
+	const std::string& getText() const;
 	const int getWidth() const;
 	const int getHeight() const;
 	const bool getLocked() const;

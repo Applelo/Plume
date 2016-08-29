@@ -16,7 +16,6 @@ Menu::Menu() {
 	_buttonPlay = new Buttons();
 	_buttonCredits = new Buttons();
 	_buttonExit = new Buttons();
-	_buttonScore = new Buttons();
 	_buttonBack = new Buttons();
 
 	_step = MAIN;
@@ -26,39 +25,12 @@ Menu::Menu() {
 	_oldXTouch = 0;
 	_oldYTouch = 0;
 
-	//buttonPlay
-	_buttonPlay->setX((SCREEN_L-(SCREEN_L/4))/2);
-	_buttonPlay->setY(SCREEN_H/9);
-	_buttonPlay->setWidth(SCREEN_L/4);
-	_buttonPlay->setHeight(SCREEN_H/9);
-	_buttonPlay->setFont(_tfont);
-	_buttonPlay->setText("Play");
+	_buttonPlay = new Buttons( _tfont, "Play", (SCREEN_L-(SCREEN_L/4))/2, SCREEN_H/9, SCREEN_L/4, SCREEN_H/9);
 	_buttonPlay->setSelected(true);
+	_buttonCredits = new Buttons( _tfont, "Credits", (SCREEN_L-(SCREEN_L/4))/2, SCREEN_H/9*3, SCREEN_L/4, SCREEN_H/9);
+	_buttonExit = new Buttons( _tfont, "Exit", (SCREEN_L-(SCREEN_L/4))/2, SCREEN_H/9*5, SCREEN_L/4, SCREEN_H/9);
+	_buttonBack = new Buttons( _tfont, "Back", (SCREEN_L-(SCREEN_L/4))/2, SCREEN_H/9*5, SCREEN_L/4, SCREEN_H/9);
 
-	//buttonCredits
-	_buttonCredits->setX((SCREEN_L-(SCREEN_L/4))/2);
-	_buttonCredits->setY(SCREEN_H/9*3);
-	_buttonCredits->setWidth(SCREEN_L/4);
-	_buttonCredits->setHeight(SCREEN_H/9);
-	_buttonCredits->setFont(_tfont);
-	_buttonCredits->setText("Credits");
-
-	//buttonExit
-	_buttonExit->setX((SCREEN_L-(SCREEN_L/4))/2);
-	_buttonExit->setY(SCREEN_H/9*5);
-	_buttonExit->setWidth(SCREEN_L/4);
-	_buttonExit->setHeight(SCREEN_H/9);
-	_buttonExit->setFont(_tfont);
-	_buttonExit->setText("Exit");
-
-
-//buttonBack
-	_buttonBack->setX((SCREEN_L-(SCREEN_L/4))/2);
-	_buttonBack->setY(SCREEN_H/9*5);
-	_buttonBack->setWidth(SCREEN_L/4);
-	_buttonBack->setHeight(SCREEN_H/9);
-	_buttonBack->setFont(_tfont);
-	_buttonBack->setText("Back");
 }
 
 Menu::~Menu() {

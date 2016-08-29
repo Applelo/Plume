@@ -25,8 +25,6 @@
 
 class Engine {
 private:
-	std::vector<Buttons*> _buttons;
-
 	Timer* _timer;
 	Plume* _plume;
 	Grid* _grid;
@@ -39,6 +37,7 @@ private:
 	SceTouchData _touch;
 	SceCtrlData _pad;
 	int _xTouch;
+	Buttons* _buttonPause;
 
 public:
 	Engine();

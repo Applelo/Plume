@@ -34,7 +34,6 @@ private:
 	Buttons* _buttonPlay;
 	Buttons* _buttonCredits;
 	Buttons* _buttonExit;
-	Buttons* _buttonScore;
 	Buttons* _buttonBack;
 
 public:

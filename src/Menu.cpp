@@ -38,8 +38,8 @@ Menu::~Menu() {
 
 
 void Menu::game() {
-	_engine->control();
 	_engine->displayWorld();
+	_engine->control();
 	_engine->check();
 }
 
@@ -50,7 +50,7 @@ void Menu::main() {
 	_buttonPlay->displayButton();
 	_buttonCredits->displayButton();
 	_buttonExit->displayButton();
-	
+
 	_xTouch = lerp(_touch.report[0].x, 1919, 960);
 	_yTouch = lerp(_touch.report[0].y, 1087, 544);
 

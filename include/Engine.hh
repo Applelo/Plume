@@ -37,6 +37,13 @@ private:
 	SceTouchData _touch;
 	SceCtrlData _pad;
 	int _xTouch;
+	int _yTouch;
+	int _oldXTouch;
+	int _oldYTouch = 0;
+	bool _pause;
+	bool _loose;
+	int _score;
+	int _time;
 	Buttons* _buttonPause;
 
 public:
@@ -46,6 +53,7 @@ public:
 	void displayWorld();
 	void control();
 	void check();
+	const bool collision(const int i) const;
 
 };
 #endif /* !ENGINE_HH_ */

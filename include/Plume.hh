@@ -21,6 +21,8 @@ private:
 	int _x;
 	int _y;
 	int _speed;
+	float _time;
+	bool _pause;
 	Statut _statut;
 	Timer* _timer;
 	vita2d_texture* _texture;
@@ -35,12 +37,14 @@ public:
 	void setTexture(vita2d_texture* texture);
 	void setStatut(const Statut statut);
 	void setSpeed(const int speed);
+	void setPause(const bool pause);
 
 	//Getter
 	const int getX() const;
 	const int getY() const;
 	const Statut getStatut() const;
 	const int getSpeed() const;
+	const bool getPause() const;
 
 	// Display
 	void displayPlume();

@@ -14,7 +14,7 @@ typedef enum Step {
 	MAIN = 0,
 	GAME,
 	CREDITS,
-	SCORE,
+	LOOSE,
 	EXIT
 } Step;
 
@@ -35,6 +35,7 @@ private:
 	Buttons* _buttonCredits;
 	Buttons* _buttonExit;
 	Buttons* _buttonBack;
+	Buttons* _buttonOk;
 
 public:
 	Menu();
@@ -50,6 +51,7 @@ public:
 	void main();
 	void credits();
 	void game();
+	void loose();
 
 };
 

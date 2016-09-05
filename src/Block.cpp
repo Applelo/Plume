@@ -34,6 +34,10 @@ void Block::setNumber(const int number){
 	_number = number;
 }
 
+void Block::setSpeed(const int speed){
+	_speed = speed;
+}
+
 
 //Getter
 const bool Block::getStatut() const {
@@ -52,11 +56,15 @@ const int Block::getNumber() const {
 	return _number;
 }
 
+const int Block::getSpeed() const {
+	return _speed;
+}
+
 // Display
 void Block::displayBlock() {
 
   if (_statut)
-  	_position += 1;
+  	_position += _speed;
 
   for (int _i=0; _i < _number; _i++) {
 		vita2d_draw_texture(_texture, _xBlock[_i], _yBlock[_i] + _position);

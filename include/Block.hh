@@ -15,6 +15,7 @@ private:
 	float _yBlock[15];
 	int _position;
 	int _number;
+	int _speed;
 	bool _statut;
 	vita2d_texture* _texture;
 
@@ -26,12 +27,14 @@ public:
 	void setTexture(vita2d_texture* texture);
 	void setStatut(const bool statut);
 	void setNumber(const int number);
+	void setSpeed(const int speed);
 
 	//Getter
 	const bool getStatut() const;
 	const int getXBlock(const int id) const;
 	const int getYBlock(const int id) const;
 	const int getNumber() const;
+	const int getSpeed() const;
 
 	// Display
 	void displayBlock();

@@ -27,6 +27,7 @@ Engine::Engine() {
 	_loose = false;
 	_score = 0;
 	_time = 0;
+	_speed = 1;
 
 	_textures["plume"] = vita2d_load_PNG_buffer(&_binary_img_plume_png_start);
 	_textures["cloud"] = vita2d_load_PNG_buffer(&_binary_img_cloud_png_start);
@@ -156,6 +157,10 @@ void Engine::check() {
 		if (collision(_i))
 		 _score = _score - 1;
 	}
+	
+	_grid->setSpeed(_speed);
+	_cloud->setSpeed(_speed);
+	_block->setSpeed(_speed);
 
 }
 
@@ -165,3 +170,18 @@ const bool Engine::collision(const int i) const {
 	else
 		return true;
 }
+
+//Getter
+
+const int Engine::getScore() const {
+	return _score;
+}
+
+const int Engine::getTime() const {
+	return _time;
+}
+
+const bool Engine::getLoose() const {
+	return _loose;
+}
+

@@ -27,6 +27,8 @@ int main() {
 			menu->game();
 		if (menu->getMenu() == Step::CREDITS)
 			menu->credits();
+		if (menu->getMenu() == Step::LOOSE)
+			menu->loose();
 		if (menu->getMenu() == Step::EXIT)
 			run=0;
 

@@ -11,6 +11,8 @@ Plume::Plume() {
 	_y = 475;
 	_speed = 4;
 	_statut = START;
+	_pause = false;
+	_time = 0;
 	_timer = new Timer();
 	_timer->startTimer();
 	_texture = nullptr;
@@ -40,6 +42,10 @@ void Plume::setSpeed(const int speed) {
 	_speed = speed;
 }
 
+void Plume::setPause(const bool pause) {
+	_pause = pause;
+}
+
 
 //Getter
 const int Plume::getX() const{
@@ -58,16 +64,28 @@ const int Plume::getSpeed() const{
 	return _speed;
 }
 
+const bool Plume::getPause() const{
+	return _pause;
+}
+
 // Display
 void Plume::displayPlume() {
 
-  if (floor(_timer->getTime() / 100) >= 3)
+	if (floor(_timer->getTime() / 100) >= 3)
 		_timer->resetTimer();
-
-  if (_statut == LEFT)
-		vita2d_draw_texture_part(_texture, _x, _y, 0 + floor(_timer->getTime() / 100) * 38, 0, 38, 60); //left
-  else if (_statut == RIGHT)
-		vita2d_draw_texture_part(_texture, _x, _y, 152 + floor(_timer->getTime() / 100) * 38, 0, 38, 60);//right
-  else
-		vita2d_draw_texture_part(_texture, _x, _y, 304 + floor(_timer->getTime() / 100) * 38, 0, 38, 60);//start
+	
+	if (_timer->isPlaying())
+		_time = floor(_timer->getTime() / 100) * 38;
+		
+	if (_pause)
+		_timer->pauseTimer();
+	else
+		_timer->resumeTimer();
+	
+	if (_statut == LEFT)
+		vita2d_draw_texture_part(_texture, _x, _y, 0 + _time, 0, 38, 60); //left
+  	else if (_statut == RIGHT)
+		vita2d_draw_texture_part(_texture, _x, _y, 152 + _time, 0, 38, 60);//right
+  	else
+		vita2d_draw_texture_part(_texture, _x, _y, 304 + _time, 0, 38, 60);//start
 }

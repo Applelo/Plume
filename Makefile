@@ -43,7 +43,7 @@ all: $(TARGET).vpk
 	$(PREFIX)-ld -r -b binary -o $@ $^
 
 eboot.bin: $(TARGET).velf
-	vita-make-fself $< $@
+	vita-make-fself -s $< $@
 
 
 %.velf: %.elf

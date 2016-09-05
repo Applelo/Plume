@@ -87,17 +87,17 @@ void Menu::loose() {
 	_engine->displayWorld();
 	vita2d_draw_rectangle(0, 0, 960, 544, RGBA8( 217, 174, 28, 200));
 	vita2d_font_draw_textf(_tfont, 100, 100, WHITE, 20,"Loose\n\n\n\nScore: %d\n\nTime: %d",_engine->getScore(),_engine->getTime());
-	
+
 	sceTouchPeek(SCE_TOUCH_PORT_FRONT, &_touch, 1);
-	_buttonPlay->displayButton();
-	
+	_buttonOk->displayButton();
+
 	_xTouch = lerp(_touch.report[0].x, 1919, 960);
 	_yTouch = lerp(_touch.report[0].y, 1087, 544);
 
 	if (_buttonOk->touchButton(_xTouch, _yTouch) && _touch.reportNum > 0 && _oldXTouch != _xTouch) {
 		_step = MAIN;
 	}
-	
+
 }
 
 //Setter

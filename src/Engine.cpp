@@ -155,9 +155,9 @@ void Engine::check() {
 
 	for (int _i = 0; _i < _block->getNumber(); _i++) {
 		if (collision(_i))
-		 _score = _score - 1;
+		 _loose = true;
 	}
-	
+
 	_grid->setSpeed(_speed);
 	_cloud->setSpeed(_speed);
 	_block->setSpeed(_speed);
@@ -184,4 +184,3 @@ const int Engine::getTime() const {
 const bool Engine::getLoose() const {
 	return _loose;
 }
-

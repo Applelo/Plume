@@ -33,13 +33,13 @@ void Cloud::setTexture(vita2d_texture* texture){
 }
 
 
-void Cloud::setSpeed(const int speed) {
+void Cloud::setSpeed(const float speed) {
 	_speed = speed;
 }
 
 
 //Getter
-const int Cloud::getSpeed() const{
+const float Cloud::getSpeed() const{
 	return _speed;
 }
 
@@ -52,7 +52,7 @@ void Cloud::displayCloud() {
 
 	if (_statut==true)
 		_position += _speed;
-  	
+
   for (int _i=0; _i<10;_i++) {
 		vita2d_draw_texture_part(_texture, _xCloud[_i], _yCloud[_i] + _position, 0 + (_typeCloud[_i] * 66), 0, 66 + (_typeCloud[_i] * 14), 48);
 		if (_yCloud[_i] + _position > 544) {

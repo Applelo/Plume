@@ -29,7 +29,7 @@ void Grid::setTexture(vita2d_texture* texture){
 	_texture = texture;
 }
 
-void Grid::setSpeed(const int speed) {
+void Grid::setSpeed(const float speed) {
 	_speed = speed;
 }
 
@@ -42,7 +42,7 @@ const bool Grid::getStatut() const {
 	return _statut;
 }
 
-const int Grid::getSpeed() const{
+const float Grid::getSpeed() const{
 	return _speed;
 }
 

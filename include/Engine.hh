@@ -43,7 +43,7 @@ private:
 	bool _pause;
 	bool _loose;
 	int _score;
-	int _speed;
+	float _speed;
 	int _time;
 	Buttons* _buttonPause;
 
@@ -55,8 +55,8 @@ public:
 	void control();
 	void check();
 	const bool collision(const int i) const;
-	
-	
+
+
 	//Getter
 	const bool getLoose() const;
 	const int getScore() const;

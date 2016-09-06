@@ -13,9 +13,10 @@ class Block {
 private:
 	float _xBlock[15];
 	float _yBlock[15];
+	bool _mvBlock[15];
 	int _position;
 	int _number;
-	int _speed;
+	float _speed;
 	bool _statut;
 	vita2d_texture* _texture;
 
@@ -27,14 +28,14 @@ public:
 	void setTexture(vita2d_texture* texture);
 	void setStatut(const bool statut);
 	void setNumber(const int number);
-	void setSpeed(const int speed);
+	void setSpeed(const float speed);
 
 	//Getter
 	const bool getStatut() const;
 	const int getXBlock(const int id) const;
 	const int getYBlock(const int id) const;
 	const int getNumber() const;
-	const int getSpeed() const;
+	const float getSpeed() const;
 
 	// Display
 	void displayBlock();

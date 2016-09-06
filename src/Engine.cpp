@@ -99,19 +99,23 @@ void Engine::control() {
 	_yTouch = lerp(_touch.report[0].y, 1087, 544);
 
 		if (!_pause) {
-			if (_xTouch < 480)
+			if (_plume->getStatut() == Statut::LEFT)
 				_plume->setX(_plume->getX()-4);
-			else
+			else if (_plume->getStatut() == Statut::RIGHT)
 				_plume->setX(_plume->getX()+4);
 		}
 //Statut
 	if (_plume->getY() >= 420) {
 		_plume->setStatut(Statut::START);
+		if (_xTouch < 480)
+			_plume->setX(_plume->getX()-4);
+		else
+			_plume->setX(_plume->getX()+4);
 	}
 	else {
-		if (_xTouch<480)
+		if (_xTouch<480 && _oldXTouch != _xTouch)
 			_plume->setStatut(Statut::LEFT);
-		else
+		else if (_xTouch>480 && _oldXTouch != _xTouch)
 			_plume->setStatut(Statut::RIGHT);
 	}
 
@@ -119,17 +123,21 @@ void Engine::control() {
 		_plume->setY(_plume->getY() - 1);
 	else {
 		_buttonPause->displayButton();
-		if (_buttonPause->touchButton(_xTouch, _yTouch) && _touch.reportNum > 0 && _oldXTouch != _xTouch)
+		if (_buttonPause->touchButton(_xTouch, _yTouch) && _touch.reportNum == 0 && _oldXTouch != _xTouch)
 			_pause = (_pause) ? false : true;
 	}
 
 
 	//Limite personnage
-	if (_plume->getX() < 150)
+	if (_plume->getX() < 150) {
 		_plume->setX(150);
+		_plume->setStatut(Statut::RIGHT);
+	}
 
-	if (_plume->getX() > 770)
+	if (_plume->getX() > 770) {
 		_plume->setX(770);
+		_plume->setStatut(Statut::LEFT);
+	}
 
 	_oldXTouch = _xTouch;
 	_oldYTouch = _yTouch;
@@ -150,13 +158,21 @@ void Engine::check() {
 		_block->setStatut(true);
 		_timer->resumeTimer();
 	}
-	else
+	else {
+		_score = (_time/3)*_speed;
 		_time = _timer->getTime()*0.001;
+	}
 
 	for (int _i = 0; _i < _block->getNumber(); _i++) {
 		if (collision(_i))
 		 _loose = true;
 	}
+
+	if (_time>10 && _time<15)
+		_speed = 1.5;
+	else if (_time>80)
+		_speed = 2;
+
 
 	_grid->setSpeed(_speed);
 	_cloud->setSpeed(_speed);

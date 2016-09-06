@@ -8,10 +8,11 @@
 
 Block::Block() {
 	_position = 0;
-	_number = 15;
-	for(int _i = 0; _i < _number; _i++) {
+	_number = 10;
+	for(int _i = 0; _i < 15; _i++) {
 		_xBlock[_i] = (rand() % 6) * 100 + 160;
 		_yBlock[_i] = -((rand() % 8)* 68 + 10) - 36;
+		_mvBlock[_i] = false;
 	}
 
 	_statut = false;
@@ -34,7 +35,7 @@ void Block::setNumber(const int number){
 	_number = number;
 }
 
-void Block::setSpeed(const int speed){
+void Block::setSpeed(const float speed){
 	_speed = speed;
 }
 
@@ -56,7 +57,7 @@ const int Block::getNumber() const {
 	return _number;
 }
 
-const int Block::getSpeed() const {
+const float Block::getSpeed() const {
 	return _speed;
 }
 

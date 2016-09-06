@@ -12,7 +12,7 @@
 class Grid {
 private:
 	int _y;
-	int _speed;
+	float _speed;
 	bool _statut;
 	vita2d_texture* _texture;
 
@@ -24,12 +24,12 @@ public:
 	void setY(const int y);
 	void setTexture(vita2d_texture* texture);
 	void setStatut(const bool statut);
-	void setSpeed(const int speed);
+	void setSpeed(const float speed);
 
 	//Getter
 	const int getY() const;
 	const bool getStatut() const;
-	const int getSpeed() const;
+	const float getSpeed() const;
 
 	// Display
 	void displayGrid();

@@ -6,6 +6,8 @@
 ##
 ##
 
+PSVITAIP = 192.168.0.13
+
 TITLE_ID = PLUM00001
 TARGET = Plume
 OBJS   = src/Buttons.o src/Engine.o src/Font.o src/main.o src/Menu.o src/Timer.o \
@@ -55,3 +57,7 @@ $(TARGET).elf: $(OBJS)
 clean:
 	-rm -f $(TARGET).velf $(TARGET).elf $(OBJS) \
 	eboot.bin param.sfo $(TARGET).vpk
+
+send: eboot.bin
+		curl -T eboot.bin ftp://$(PSVITAIP):1337/ux0:/app/$(TITLE_ID)/
+		@echo "Sent."

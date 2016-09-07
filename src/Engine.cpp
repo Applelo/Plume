@@ -123,10 +123,9 @@ void Engine::control() {
 		_plume->setY(_plume->getY() - 1);
 	else {
 		_buttonPause->displayButton();
-		if (_buttonPause->touchButton(_xTouch, _yTouch) && _touch.reportNum == 0 && _oldXTouch != _xTouch)
+		if (_buttonPause->touchButton(_xTouch, _yTouch) && _touch.reportNum > 0 && _oldXTouch != _xTouch)
 			_pause = (_pause) ? false : true;
 	}
-
 
 	//Limite personnage
 	if (_plume->getX() < 150) {

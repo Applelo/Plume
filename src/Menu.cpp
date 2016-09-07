@@ -75,10 +75,11 @@ void Menu::credits() {
 	_xTouch = lerp(_touch.report[0].x, 1919, 960);
 	_yTouch = lerp(_touch.report[0].y, 1087, 544);
 
+
 	if (_buttonBack->touchButton(_xTouch, _yTouch) && _touch.reportNum > 0 && _oldXTouch != _xTouch) {
 		_step = MAIN;
 	}
-
+	vita2d_font_draw_textf(_tfont, 100, 100, WHITE, 20,"%s %.2f", VERSION_STAGE, VERSION_NUMBER);
 	_oldXTouch = _xTouch;
 	_oldYTouch = _yTouch;
 }

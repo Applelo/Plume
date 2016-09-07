@@ -39,6 +39,10 @@ void Block::setSpeed(const float speed){
 	_speed = speed;
 }
 
+void Block::setMvBlock(const int id, const bool mv){
+	_mvBlock[id] = mv;
+}
+
 
 //Getter
 const bool Block::getStatut() const {
@@ -51,6 +55,10 @@ const int Block::getXBlock(const int id) const {
 
 const int Block::getYBlock(const int id) const {
 	return _yBlock[id] + _position;
+}
+
+const bool Block::getMvBlock(const int id) const {
+	return _xBlock[id];
 }
 
 const int Block::getNumber() const {
@@ -66,6 +74,7 @@ void Block::displayBlock() {
 
   if (_statut)
   	_position += _speed;
+  
 
   for (int _i=0; _i < _number; _i++) {
 		vita2d_draw_texture(_texture, _xBlock[_i], _yBlock[_i] + _position);
@@ -73,5 +82,11 @@ void Block::displayBlock() {
 			_xBlock[_i] = (rand() % 6) * 100 + 160;
 			_yBlock[_i] = -((rand() % 8) * 68 + 10) - _position - 36;
 		}
+		
+		if (_mvBlock[_i]) {
+			
+			
+			
+		}	
 	}
 }

@@ -29,6 +29,7 @@ public:
 	void setStatut(const bool statut);
 	void setNumber(const int number);
 	void setSpeed(const float speed);
+	void setMvBlock(const int id, const bool mv);
 
 	//Getter
 	const bool getStatut() const;
@@ -36,6 +37,7 @@ public:
 	const int getYBlock(const int id) const;
 	const int getNumber() const;
 	const float getSpeed() const;
+	const bool getMvBlock(const int id) const;
 
 	// Display
 	void displayBlock();

@@ -32,7 +32,7 @@ public:
 	void setNumber(const int number);
 	void setSpeed(const float speed);
 	void setMvBlock(const int id, const bool mv);
-	void setSpeedMv(const float speedMv);
+	void setMvSpeed(const float speedMv);
 
 	//Getter
 	const bool getStatut() const;
@@ -41,7 +41,7 @@ public:
 	const int getNumber() const;
 	const float getSpeed() const;
 	const bool getMvBlock(const int id) const;
-	const float getSpeedMv() const;
+	const float getMvSpeed() const;
 
 	// Display
 	void displayBlock();

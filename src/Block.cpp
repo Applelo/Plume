@@ -44,7 +44,7 @@ void Block::setMvBlock(const int id, const bool mv){
 	_mvBlock[id] = mv;
 }
 
-void Block::setSpeedMv(const float speedMv){
+void Block::setMvSpeed(const float speedMv){
 	_speedMv = speedMv;
 }
 
@@ -74,7 +74,7 @@ const float Block::getSpeed() const {
 	return _speed;
 }
 
-const float Block::getSpeedMv() const {
+const float Block::getMvSpeed() const {
 	return _speedMv;
 }
 

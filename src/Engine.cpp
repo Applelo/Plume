@@ -164,13 +164,25 @@ void Engine::check() {
 
 	for (int _i = 0; _i < _block->getNumber(); _i++) {
 		if (collision(_i))
-		 _loose = true;
+			_loose = true;
+		
+		if (_time>120 && _time<160 && _i % 2)
+			_block->setMvBlock(_i,true);
+		else if (_time>160)
+			_block->setMvBlock(_i,true);
+		
+		if (_time > 240 && _time < 300)
+			_block->setMvSpeed(1.2);
+		else if (_time > 300)
+			_block->setMvSpeed(1.5);
+		
 	}
 
 	if (_time>10 && _time<15)
 		_speed = 1.5;
 	else if (_time>80)
 		_speed = 2;
+	
 
 
 	_grid->setSpeed(_speed);

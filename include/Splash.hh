@@ -13,7 +13,7 @@
 class Splash {
 private:
 	vita2d_texture* _texture;
-	bool _statut;
+	bool _finish;
 	float _alpha;
 	Timer* _timer;
 
@@ -23,12 +23,10 @@ public:
 
 	//Setter
 	void setTexture(vita2d_texture* texture);
-	void setStatut(const bool statut);
 
 	//Getter
-	const bool getStatut() const;
-	const bool finishSplash() const;
-	
+	const bool getFinish() const;
+
 	// Display
 	void displaySplash();
 

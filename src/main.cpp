@@ -21,6 +21,8 @@ int main() {
 		vita2d_clear_screen();
 		vita2d_draw_rectangle(0, 0, SCREEN_L, SCREEN_H, COLOR_SKY);
 
+		if (menu->getMenu() == Step::SPLASH)
+			menu->splash();
 		if (menu->getMenu() == Step::MAIN)
 			menu->main();
 		if (menu->getMenu() == Step::GAME)

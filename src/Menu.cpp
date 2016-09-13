@@ -18,8 +18,8 @@ Menu::Menu() {
 	_engine = new Engine();
 
 	_step = SPLASH;
-	
-	_splash["geki"] = vita2d_load_PNG_buffer(&_binary_img_geki_png_start);
+
+	_splashscreen["geki"] = vita2d_load_PNG_buffer(&_binary_img_geki_png_start);
 
 	_xTouch = 0;
 	_yTouch = 0;
@@ -32,10 +32,9 @@ Menu::Menu() {
 	_buttonExit = new Buttons( _tfont, "Exit", (SCREEN_L-(SCREEN_L/4))/2, SCREEN_H/9*5, SCREEN_L/4, SCREEN_H/9);
 	_buttonBack = new Buttons( _tfont, "Back", (SCREEN_L-(SCREEN_L/4))/2, SCREEN_H/9*5, SCREEN_L/4, SCREEN_H/9);
 	_buttonOk = new Buttons( _tfont, "Ok", (SCREEN_L-(SCREEN_L/4))/2, SCREEN_H/9*5, SCREEN_L/4, SCREEN_H/9);
-	
+
 	_splashGeki = new Splash();
-	_splashGeki->setTexture(_splash["geki"]);
-	_splashGeki->setStatut(true);
+	_splashGeki->setTexture(_splashscreen["geki"]);
 }
 
 Menu::~Menu() {
@@ -111,7 +110,7 @@ void Menu::loose() {
 
 void Menu::splash() {
 	_splashGeki->displaySplash();
-	if (_splashGeki->finishSplash())
+	if (_splashGeki->getFinish())
 		_step = MAIN;
 }
 

@@ -38,8 +38,8 @@ private:
 	Buttons* _buttonExit;
 	Buttons* _buttonBack;
 	Buttons* _buttonOk;
-	
-	std::map<std::string, vita2d_texture*> _splash;
+
+	std::map<std::string, vita2d_texture*> _splashscreen;
 	Splash* _splashGeki;
 
 public:

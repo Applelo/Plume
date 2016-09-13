@@ -7,8 +7,8 @@
 #include "../include/Splash.hh"
 
 Splash::Splash() {
-	_alpha = 0;
-	_statut = false;
+	_alpha = 255;
+	_finish = false;
 	_texture = nullptr;
 	_timer = new Timer();
 	_timer->startTimer();
@@ -18,39 +18,29 @@ Splash::~Splash() {
 }
 
 //Setter
-void Splash::setStatut(const bool statut) {
-	_statut = statut;
-}
-
 void Splash::setTexture(vita2d_texture* texture){
 	_texture = texture;
 }
 
-
 //Getter
-const bool Splash::getStatut() const {
-	return _statut;
-}
-
-const bool Splash::finishSplash() const {
-	if (_timer->getTime() * 0.001 > 8)
-		return true;
-		
-	return false;
+const bool Splash::getFinish() const {
+	return _finish;
 }
 
 // Display
 void Splash::displaySplash() {
-	if (_statut)
-		_timer->resumeTimer();
-	else
-		_timer->resetTimer();
-	
-	if ((_timer->getTime() * 0.001 > 2) && (_timer->getTime() * 0.001 < 4))//Splash on
-		_alpha += 0.5;
+
+	if (_timer->getTime() * 0.001 >= 6)
+		_finish = true;
+
+	if ((_timer->getTime() * 0.001 > 0) && (_timer->getTime() * 0.001 < 2) && (_alpha > 0))//Splash on
+		_alpha -= 3;
 	//Splash no move (between 4 and 6 sec)
-	else if ((_timer->getTime() * 0.001 > 6) && (_timer->getTime() * 0.001 < 8))//Splash bye
-		_alpha -= 0.5;
-	
-	vita2d_draw_texture_tint(_texture, 0, 0, _alpha);//splash
+	else if ((_timer->getTime() * 0.001 > 4) && (_timer->getTime() * 0.001 < 6) && (_alpha < 255))//Splash bye
+		_alpha += 3;
+
+	if (_texture)
+		vita2d_draw_texture(_texture, 0, 0);//splash
+
+	vita2d_draw_rectangle(0, 0, SCREEN_L, SCREEN_H, RGBA8(0, 0, 0, (int)_alpha));//masque
 }

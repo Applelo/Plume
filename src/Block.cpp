@@ -16,6 +16,7 @@ Block::Block() {
 		_positionBlock[_i] = -(rand() % 61);
 	}
 	_speed = 1;
+	_speedMv = 0.5;
 	_statut = false;
 	_texture = nullptr;
 }

@@ -11,8 +11,8 @@ PSVITAIP = 192.168.0.13
 TITLE_ID = PLUM00001
 TARGET = Plume
 OBJS   = src/Buttons.o src/Engine.o src/Font.o src/main.o src/Menu.o src/Timer.o \
-src/Plume.o src/Grid.o src/Grass.o src/Cloud.o src/Block.o \
-img/plume.o img/grid.o img/cloud.o img/block.o img/grass.o img/pause.o
+src/Plume.o src/Grid.o src/Grass.o src/Cloud.o src/Block.o src/Splash.o \
+img/plume.o img/grid.o img/cloud.o img/block.o img/grass.o img/pause.o img/geki.o
 
 
 LIBS = -lvita2d -lSceKernel_stub -lSceDisplay_stub -lSceGxm_stub \
@@ -34,7 +34,7 @@ ASFLAGS = $(CFLAGS)
 all: $(TARGET).vpk
 
 %.vpk: eboot.bin
-	vita-mksfoex -s TITLE_ID=$(TITLE_ID) "$(TARGET)" param.sfo
+	vita-mksfoex -d PARENTAL_LEVEL=1 -s APP_VER=01.00 -s TITLE_ID=$(TITLE_ID) "$(TARGET)" param.sfo
 	vita-pack-vpk -s param.sfo -b eboot.bin $@ \
 	--add sce_sys/icon0.png=sce_sys/icon0.png \
 	--add sce_sys/livearea/contents/bg.png=sce_sys/livearea/contents/bg.png \

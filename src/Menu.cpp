@@ -9,12 +9,17 @@
 extern unsigned int font_size;
 extern unsigned char font[];
 
+// Splash
+extern unsigned char _binary_img_geki_png_start;
+
 Menu::Menu() {
 	_tfont = vita2d_load_font_mem(font, font_size);
 
 	_engine = new Engine();
 
-	_step = MAIN;
+	_step = SPLASH;
+	
+	_splash["geki"] = vita2d_load_PNG_buffer(&_binary_img_geki_png_start);
 
 	_xTouch = 0;
 	_yTouch = 0;
@@ -27,7 +32,10 @@ Menu::Menu() {
 	_buttonExit = new Buttons( _tfont, "Exit", (SCREEN_L-(SCREEN_L/4))/2, SCREEN_H/9*5, SCREEN_L/4, SCREEN_H/9);
 	_buttonBack = new Buttons( _tfont, "Back", (SCREEN_L-(SCREEN_L/4))/2, SCREEN_H/9*5, SCREEN_L/4, SCREEN_H/9);
 	_buttonOk = new Buttons( _tfont, "Ok", (SCREEN_L-(SCREEN_L/4))/2, SCREEN_H/9*5, SCREEN_L/4, SCREEN_H/9);
-
+	
+	_splashGeki = new Splash();
+	_splashGeki->setTexture(_splash["geki"]);
+	_splashGeki->setStatut(true);
 }
 
 Menu::~Menu() {
@@ -99,6 +107,12 @@ void Menu::loose() {
 		_step = MAIN;
 	}
 
+}
+
+void Menu::splash() {
+	_splashGeki->displaySplash();
+	if (_splashGeki->finishSplash())
+		_step = MAIN;
 }
 
 //Setter

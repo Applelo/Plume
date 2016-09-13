@@ -17,6 +17,9 @@
 # include <psp2/touch.h>
 # include <psp2/sysmodule.h>
 # include <ctime>
+# include <vector>
+# include <map>
+# include <string>
 
 # include <vita2d.h>
 

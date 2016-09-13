@@ -8,11 +8,6 @@
 #ifndef ENGINE_HH_
 # define ENGINE_HH_
 
-# include <vector>
-# include <map>
-# include <string>
-
-
 # include "Buttons.hh"
 # include "Plume.hh"
 # include "Grid.hh"

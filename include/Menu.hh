@@ -9,9 +9,11 @@
 # define MENU_HH_
 # include "Buttons.hh"
 # include "Engine.hh"
+# include "Splash.hh"
 
 typedef enum Step {
-	MAIN = 0,
+	SPLASH = 0,
+	MAIN,
 	GAME,
 	CREDITS,
 	LOOSE,
@@ -36,6 +38,9 @@ private:
 	Buttons* _buttonExit;
 	Buttons* _buttonBack;
 	Buttons* _buttonOk;
+	
+	std::map<std::string, vita2d_texture*> _splash;
+	Splash* _splashGeki;
 
 public:
 	Menu();
@@ -48,6 +53,7 @@ public:
 	void setMenu(const Step step);
 
 	//Display Menu
+	void splash();
 	void main();
 	void credits();
 	void game();

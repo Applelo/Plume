@@ -22,6 +22,7 @@ void Splash::setTexture(vita2d_texture* texture){
 	_texture = texture;
 }
 
+
 //Getter
 const bool Splash::getFinish() const {
 	return _finish;

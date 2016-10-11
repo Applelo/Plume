@@ -28,7 +28,7 @@ public:
 	const bool getFinish() const;
 
 	// Display
-	void displaySplash();
+	void displaySplash(int x, int y);
 
 
 };

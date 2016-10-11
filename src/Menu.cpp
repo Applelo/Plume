@@ -113,10 +113,9 @@ void Menu::splash() {
 	_xTouch = lerp(_touch.report[0].x, 1919, 960);
 	_yTouch = lerp(_touch.report[0].y, 1087, 544);
 
-	_splashGeki->displaySplash();
-	if ((_splashGeki->getFinish()) || ((_xTouch > 0 && _xTouch < SCREEN_L && _yTouch > 0 && _yTouch < SCREEN_H) && (_oldXTouch > 0 && _oldXTouch < SCREEN_L && _oldYTouch > 0 && _oldYTouch < SCREEN_H)))
+	_splashGeki->displaySplash(_xTouch,_yTouch);
+	if (_splashGeki->getFinish() && _xTouch != _oldXTouch && _yTouch != _oldYTouch)
 		_step = MAIN;
-
 
 	_oldXTouch = _xTouch;
 	_oldYTouch = _yTouch;

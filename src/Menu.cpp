@@ -86,15 +86,15 @@ void Menu::credits() {
 	if (_buttonBack->touchButton(_xTouch, _yTouch) && _touch.reportNum > 0 && _oldXTouch != _xTouch) {
 		_step = MAIN;
 	}
-	vita2d_font_draw_textf(_tfont, 100, 100, WHITE, 20,"%s %.2f", VERSION_STAGE, VERSION_NUMBER);
+	vita2d_font_draw_textf(_tfont, 100, 100, WHITE, 20, "%s %.2f", VERSION_STAGE, VERSION_NUMBER);
 	_oldXTouch = _xTouch;
 	_oldYTouch = _yTouch;
 }
 
 void Menu::loose() {
 	_engine->displayWorld();
-	vita2d_draw_rectangle(0, 0, 960, 544, RGBA8( 217, 174, 28, 200));
-	vita2d_font_draw_textf(_tfont, 100, 100, WHITE, 20,"Loose\n\n\n\nScore: %d\n\nTime: %d",_engine->getScore(),_engine->getTime());
+	vita2d_draw_rectangle(0, 0, 960, 544, RGBA8(217, 174, 28, 200));
+	vita2d_font_draw_textf(_tfont, 100, 100, WHITE, 20, "Loose\n\n\n\nScore: %d\n\nTime: %d", _engine->getScore(), _engine->getTime());
 
 	sceTouchPeek(SCE_TOUCH_PORT_FRONT, &_touch, 1);
 	_buttonOk->displayButton();

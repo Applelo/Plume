@@ -84,7 +84,7 @@ void Engine::displayWorld() {
 	_block->displayBlock();
 	if (_pause) {
 		vita2d_draw_rectangle(0, 0, 960, 544, RGBA8( 217, 174, 28, 200));
-		vita2d_font_draw_text(_tfont, 100, 100, WHITE, 20,"Pause");
+		vita2d_font_draw_text(_tfont, 100, 100, WHITE, 20, "Pause");
 	}
 	vita2d_font_draw_textf(_tfont, 10, 10, WHITE, 20,"Time: %d\n\nScore: %d", _time, _score);
 
@@ -100,17 +100,17 @@ void Engine::control() {
 
 		if (!_pause) {
 			if (_plume->getStatut() == Statut::LEFT)
-				_plume->setX(_plume->getX()-4);
+				_plume->setX(_plume->getX() - 4);
 			else if (_plume->getStatut() == Statut::RIGHT)
-				_plume->setX(_plume->getX()+4);
+				_plume->setX(_plume->getX() + 4);
 		}
 //Statut
 	if (_plume->getY() >= 420) {
 		_plume->setStatut(Statut::START);
 		if (_xTouch < 480)
-			_plume->setX(_plume->getX()-4);
+			_plume->setX(_plume->getX() - 4);
 		else
-			_plume->setX(_plume->getX()+4);
+			_plume->setX(_plume->getX() + 4);
 	}
 	else {
 		if (_xTouch<480 && _oldXTouch != _xTouch)
@@ -158,31 +158,31 @@ void Engine::check() {
 		_timer->resumeTimer();
 	}
 	else {
-		_score = (_time/3)*_speed;
-		_time = _timer->getTime()*0.001;
+		_score = (_time/3) * _speed;
+		_time = _timer->getTime() * 0.001;
 	}
 
 	for (int _i = 0; _i < _block->getNumber(); _i++) {
 		if (collision(_i))
 			_loose = true;
-		
-		if (_time>120 && _time<160 && _i % 2)
-			_block->setMvBlock(_i,true);
+
+		if (_time > 120 && _time < 160 && _i % 2)
+			_block->setMvBlock(_i, true);
 		else if (_time>160)
-			_block->setMvBlock(_i,true);
-		
+			_block->setMvBlock(_i, true);
+
 		if (_time > 240 && _time < 300)
 			_block->setMvSpeed(1.2);
 		else if (_time > 300)
 			_block->setMvSpeed(1.5);
-		
+
 	}
 
 	if (_time>10 && _time<15)
 		_speed = 1.5;
 	else if (_time>80)
 		_speed = 2;
-	
+
 
 
 	_grid->setSpeed(_speed);

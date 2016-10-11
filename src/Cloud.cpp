@@ -11,8 +11,8 @@ Cloud::Cloud() {
 	_speed = 1;
 
 	for(int _i = 0; _i < 10; ++_i) {
-		_xCloud[_i] = (rand() % (SCREEN_L / 80)) * 80;
-		_yCloud[_i] = (rand() % (SCREEN_H / 68)) * 68 - 60;
+		_xCloud[_i] = (rand() % SCREEN_L);
+		_yCloud[_i] = (rand() % SCREEN_H) - 60;
 		_typeCloud[_i] = (rand() % 2);
 	}
 
@@ -56,7 +56,7 @@ void Cloud::displayCloud() {
   for (int _i=0; _i<10;_i++) {
 		vita2d_draw_texture_part(_texture, _xCloud[_i], _yCloud[_i] + _position, 0 + (_typeCloud[_i] * 66), 0, 66 + (_typeCloud[_i] * 14), 48);
 		if (_yCloud[_i] + _position > 544) {
-			_xCloud[_i] = (rand() % (SCREEN_L / 80)) * 80;
+			_xCloud[_i] = (rand() % SCREEN_L);
 			_yCloud[_i] = -100 - _position;
 			_typeCloud[_i] = (rand() % 2);
 		}

@@ -42,6 +42,8 @@ private:
 	int _time;
 	Buttons* _buttonPause;
 
+	const bool collision(const int i) const;
+
 public:
 	Engine();
 	virtual ~Engine();
@@ -49,7 +51,6 @@ public:
 	void displayWorld();
 	void control();
 	void check();
-	const bool collision(const int i) const;
 
 
 	//Getter

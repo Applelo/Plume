@@ -30,10 +30,10 @@ const bool Grass::getStatut() const {
 // Display
 void Grass::displayGrass() {
 
-	if (_statut==false && _y<560)
-  	_y=_y+2;
+	if (_statut == false && _y < 560)
+  	_y += 2;
 
   for (int _i=0; _i<=30; _i++)
-		vita2d_draw_texture(_texture,0+(_i*32),_y);
+		vita2d_draw_texture(_texture, 0+(_i*32), _y);
 
 }

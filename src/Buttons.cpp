@@ -180,12 +180,9 @@ void Buttons::displayButton() {
 
 //Touch
 const bool Buttons::touchButton(const int x, const int y) const {
-	//if (_tfont && _texture == nullptr) {
+
 	if (x > _x && x < (_x + _width) && y > _y && y < (_y + _height) && !_locked)
 		return true;
-	//}
-	//else
-		//if (x > _x && x < (_x + vita2d_texture_get_width(_texture)) && y > _y && y < (_y + vita2d_texture_get_height(_texture)) )
-			//return true;
+
 	return false;
 }

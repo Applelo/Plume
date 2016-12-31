@@ -29,7 +29,7 @@ const bool Splash::getFinish() const {
 }
 
 // Display
-void Splash::displaySplash(int x, int y) {
+void Splash::displaySplash(const int x, const int y) {
 
 	if (_timer->getTime() * 0.001 >= 6 || (x > 0 && x < SCREEN_L && y > 0 && y < SCREEN_H))
 		_finish = true;

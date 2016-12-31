@@ -12,7 +12,6 @@
 # include <string>
 # include <stdlib.h>
 # include <psp2/ctrl.h>
-# include <psp2/moduleinfo.h>
 # include <psp2/kernel/processmgr.h>
 # include <psp2/touch.h>
 # include <psp2/sysmodule.h>

@@ -15,7 +15,7 @@ src/Plume.o src/Grid.o src/Grass.o src/Cloud.o src/Block.o src/Splash.o \
 img/plume.o img/grid.o img/cloud.o img/block.o img/grass.o img/pause.o img/geki.o
 
 
-LIBS = -lvita2d -lSceKernel_stub -lSceDisplay_stub -lSceGxm_stub \
+LIBS = -lSceDisplay_stub -lSceGxm_stub -lvita2d \
 	-lSceSysmodule_stub -lSceCtrl_stub -lScePgf_stub \
 	-lSceCommonDialog_stub -lSceHttp_stub -lSceNetCtl_stub \
 	-lfreetype -lpng -lz -lm -lSceTouch_stub -lc -lstdc++ -lgcc
@@ -27,7 +27,7 @@ CXX := arm-vita-eabi-g++
 STRIP := arm-vita-eabi-strip
 READELF = $(PREFIX)-readelf
 OBJDUMP = $(PREFIX)-objdump
-CFLAGS  = -Wl,-q -Wall -O3 -I$(VITASDK)/include -L$(VITASDK)/lib
+CFLAGS  = -Wl,-q -Wall -fno-lto -I$(VITASDK)/include -L$(VITASDK)/lib
 CXXFLAGS= $(CFLAGS) -std=c++11
 ASFLAGS = $(CFLAGS)
 

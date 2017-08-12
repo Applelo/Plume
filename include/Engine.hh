@@ -26,7 +26,7 @@ private:
 	Grass* _grass;
 	Cloud* _cloud;
 	Block* _block;
-	vita2d_font* _tfont;
+	vita2d_pgf* _tfont;
 	std::map<std::string, vita2d_texture*> _textures;
 	std::string _error;
 	SceTouchData _touch;
@@ -34,7 +34,7 @@ private:
 	int _xTouch;
 	int _yTouch;
 	int _oldXTouch;
-	int _oldYTouch = 0;
+	int _oldYTouch;
 	bool _pause;
 	bool _loose;
 	int _score;

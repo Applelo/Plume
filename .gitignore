@@ -1,34 +1,21 @@
-# Compiled Object files
-*.slo
-*.lo
+# Files
 *.o
-*.obj
-*.sfo
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
 *.elf
 *.velf
-*.lnk
 *.bin
 *.vpk
+*.sfo
+*.self
+
+Plume
+
+# CMake data
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake

@@ -7,9 +7,6 @@
 
 # include "../include/Engine.hh"
 
-//Font
-extern unsigned int font_size;
-extern unsigned char font[];
 
 // Image
 extern unsigned char _binary_img_plume_png_start;
@@ -50,7 +47,7 @@ Engine::Engine() {
 	_block = new Block();
 	_block->setTexture(_textures["block"]);
 
-	_tfont = vita2d_load_font_mem(font, font_size);
+	_tfont = vita2d_load_default_pgf();
 
 	//button
 	_buttonPause = new Buttons(_textures["pause"], 890, 10, 60, 60);
@@ -60,20 +57,6 @@ Engine::Engine() {
 }
 
 Engine::~Engine() {
-	if (_tfont)
-		vita2d_free_font(_tfont);
-	if (_textures["plume"])
-		vita2d_free_texture(_textures["plume"]);
-	if (_textures["cloud"])
-		vita2d_free_texture(_textures["cloud"]);
-	if (_textures["grid"])
-		vita2d_free_texture(_textures["grid"]);
-	if (_textures["block"])
-		vita2d_free_texture(_textures["block"]);
-	if (_textures["grass"])
-		vita2d_free_texture(_textures["grass"]);
-	if (_textures["pause"])
-		vita2d_free_texture(_textures["pause"]);
 }
 
 void Engine::displayWorld() {
@@ -84,9 +67,9 @@ void Engine::displayWorld() {
 	_block->displayBlock();
 	if (_pause) {
 		vita2d_draw_rectangle(0, 0, 960, 544, RGBA8( 217, 174, 28, 200));
-		vita2d_font_draw_text(_tfont, 100, 100, WHITE, 20, "Pause");
+		vita2d_pgf_draw_text(_tfont, 100, 100, WHITE, 1.0, "Pause");
 	}
-	vita2d_font_draw_textf(_tfont, 10, 10, WHITE, 20,"Time: %d\n\nScore: %d", _time, _score);
+	vita2d_pgf_draw_textf(_tfont, 30, 10, WHITE, 1.0,"Time: %d\n\nScore: %d", _time, _score);
 
 }
 

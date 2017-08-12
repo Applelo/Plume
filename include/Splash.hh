@@ -16,19 +16,26 @@ private:
 	bool _finish;
 	float _alpha;
 	Timer* _timer;
+	int _duration;
 
 public:
 	Splash();
+	Splash(vita2d_texture* texture);
+	Splash(vita2d_texture* texture, int duration);
 	virtual ~Splash();
 
 	//Setter
 	void setTexture(vita2d_texture* texture);
 
+	void setDuration(int duration);
+
 	//Getter
 	const bool getFinish() const;
 
 	// Display
-	void displaySplash(const int x, const int y);
+	void displaySplash();
+
+	void resetSplash();
 
 
 };

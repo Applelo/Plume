@@ -6,20 +6,18 @@
  */
 
 #include "../include/Menu.hh"
-extern unsigned int font_size;
-extern unsigned char font[];
 
 // Splash
-extern unsigned char _binary_img_geki_png_start;
+//extern unsigned char _binary_img_geki_png_start;
 
 Menu::Menu() {
-	_tfont = vita2d_load_font_mem(font, font_size);
+	_tfont = vita2d_load_default_pgf();
 
 	_engine = new Engine();
 
 	_step = SPLASH;
 
-	_splashscreen["geki"] = vita2d_load_PNG_buffer(&_binary_img_geki_png_start);
+	//_splashscreen["geki"] = vita2d_load_PNG_buffer(&_binary_img_geki_png_start);
 
 	_xTouch = 0;
 	_yTouch = 0;
@@ -33,8 +31,6 @@ Menu::Menu() {
 	_buttonBack = new Buttons( _tfont, "Back", (SCREEN_L-(SCREEN_L/4))/2, SCREEN_H/9*5, SCREEN_L/4, SCREEN_H/9);
 	_buttonOk = new Buttons( _tfont, "Ok", (SCREEN_L-(SCREEN_L/4))/2, SCREEN_H/9*5, SCREEN_L/4, SCREEN_H/9);
 
-	_splashGeki = new Splash();
-	_splashGeki->setTexture(_splashscreen["geki"]);
 }
 
 Menu::~Menu() {
@@ -86,7 +82,7 @@ void Menu::credits() {
 	if (_buttonBack->touchButton(_xTouch, _yTouch) && _touch.reportNum > 0 && _oldXTouch != _xTouch) {
 		_step = MAIN;
 	}
-	vita2d_font_draw_textf(_tfont, 100, 100, WHITE, 20, "%s %.2f", VERSION_STAGE, VERSION_NUMBER);
+	vita2d_pgf_draw_textf(_tfont, 100, 100, WHITE, 1.0, "%s %.2f", VERSION_STAGE, VERSION_NUMBER);
 	_oldXTouch = _xTouch;
 	_oldYTouch = _yTouch;
 }
@@ -94,7 +90,7 @@ void Menu::credits() {
 void Menu::loose() {
 	_engine->displayWorld();
 	vita2d_draw_rectangle(0, 0, 960, 544, RGBA8(217, 174, 28, 200));
-	vita2d_font_draw_textf(_tfont, 100, 100, WHITE, 20, "Loose\n\n\n\nScore: %d\n\nTime: %d", _engine->getScore(), _engine->getTime());
+	vita2d_pgf_draw_textf(_tfont, 100, 100, WHITE, 1.0, "Loose\n\n\n\nScore: %d\n\nTime: %d", _engine->getScore(), _engine->getTime());
 
 	sceTouchPeek(SCE_TOUCH_PORT_FRONT, &_touch, 1);
 	_buttonOk->displayButton();
@@ -113,9 +109,9 @@ void Menu::splash() {
 	_xTouch = lerp(_touch.report[0].x, 1919, 960);
 	_yTouch = lerp(_touch.report[0].y, 1087, 544);
 
-	_splashGeki->displaySplash(_xTouch,_yTouch);
-	if (_splashGeki->getFinish() && _xTouch != _oldXTouch && _yTouch != _oldYTouch)
-		_step = MAIN;
+	//_splashGeki->displaySplash(_xTouch,_yTouch);
+	//if (_splashGeki->getFinish() && _xTouch != _oldXTouch && _yTouch != _oldYTouch)
+	_step = MAIN;
 
 	_oldXTouch = _xTouch;
 	_oldYTouch = _yTouch;

@@ -8,7 +8,7 @@
 #include "../include/Menu.hh"
 
 int main() {
-	sceTouchSetSamplingState(SCE_TOUCH_PORT_FRONT, 1);
+	sceTouchSetSamplingState(SCE_TOUCH_PORT_FRONT, SCE_TOUCH_SAMPLING_STATE_START);
 	int run = 1;
 
 	vita2d_init();

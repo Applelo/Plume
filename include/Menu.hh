@@ -30,7 +30,7 @@ private:
 	Step _step;
 	SceTouchData _touch;
 
-	vita2d_font* _tfont;
+	vita2d_pgf* _tfont;
 	Engine* _engine;
 
 	Buttons* _buttonPlay;

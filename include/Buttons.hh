@@ -17,7 +17,7 @@ private:
 	std::string _text;
 	int _width;
 	int _height;
-	vita2d_font* _tfont;
+	vita2d_pgf* _tfont;
 	bool _locked;
 	bool _isVisible;
 	bool _selected;
@@ -29,7 +29,7 @@ private:
 
 public:
 	Buttons();
-	Buttons(vita2d_font* font, const std::string& name, int x, int y, int width, int height);
+	Buttons(vita2d_pgf* font, const std::string& name, int x, int y, int width, int height);
 	Buttons(vita2d_texture* texture, int x, int y, int width, int height);
 	virtual ~Buttons();
 
@@ -39,7 +39,7 @@ public:
 	void setText(const std::string& text);
 	void setWidth(const int width);
 	void setHeight(const int height);
-	void setFont(vita2d_font* tfont);
+	void setFont(vita2d_pgf* tfont);
 	void setLocked(const bool locked);
 	void setIsVisible(const bool locked);
 	void setSelected(const bool selected);

@@ -25,7 +25,7 @@ Buttons::Buttons() {
 	_tfont = nullptr;
 }
 
-Buttons::Buttons(vita2d_font* font, const std::string& name, int x, int y, int width, int height) {
+Buttons::Buttons(vita2d_pgf* font, const std::string& name, int x, int y, int width, int height) {
 	 _tfont = font;
 	 _text = name;
 	 _x = x;
@@ -83,7 +83,7 @@ void Buttons::setHeight(const int height){
 	_height = height;
 }
 
-void Buttons::setFont(vita2d_font* tfont){
+void Buttons::setFont(vita2d_pgf* tfont){
 	_tfont = tfont;
 }
 
@@ -163,10 +163,10 @@ void Buttons::displayButton() {
 		}
 
 		if (_tfont) {
-			_centerW = _x + (_width/2) - (vita2d_font_text_width(_tfont, 20, _text.c_str())/2);
-			_centerH = _y + (_height/2) - (vita2d_font_text_height(_tfont, 20, _text.c_str())/2);
+			_centerW = _x + (_width/2) - (vita2d_pgf_text_width(_tfont, 1.0, _text.c_str())/2);
+			_centerH = _y + (_height/2) - (vita2d_pgf_text_height(_tfont, 1.0, _text.c_str())/2);
 
-			vita2d_font_draw_textf(_tfont, _centerW, _centerH, RGBA8(255, 255, 255, 255), 20, _text.c_str());
+			vita2d_pgf_draw_textf(_tfont, _centerW, _centerH, RGBA8(255, 255, 255, 255), 1.0, _text.c_str());
 		}
 		else if (_texture) {
 			_centerW = _x + (_width/2) - (vita2d_texture_get_width(_texture)/2);
